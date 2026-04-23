@@ -17,10 +17,10 @@ const Contact = () => {
   const [loaded, setLoaded] = useState(false);
   const [loadingProgress, setLoadingProgress] = useState(0);
   const [currentFrameIdx, setCurrentFrameIdx] = useState(0);
-  const [isInputFocused, setIsInputFocused] = useState(false);
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [message, setMessage] = useState("");
+  const[name, setName] = useState("");
+  const[email, setEmail] = useState("");
+  const[message, setMessage] = useState("");
+
 
   const frameCount = 160;
   const imagesRef = useRef([]);
@@ -48,7 +48,7 @@ const Contact = () => {
   }, []);
 
   // 2. GSAP Scroll and Render Logic (Hero Sync)
-   useEffect(() => {
+  useEffect(() => {
     if (!loaded) return;
 
     const canvas = canvasRef.current;
@@ -86,20 +86,16 @@ const Contact = () => {
     window.addEventListener("resize", resizeCanvas);
     resizeCanvas();
 
-    // Scroll Animation - Detect mobile
-    const isMobile = window.innerWidth < 768;
-    
-    const scrollTriggerConfig = {
-      trigger: containerRef.current,
-      start: "top top",
-      end: isMobile ? "+=2000" : "+=4000",
-      scrub: 1.2,
-      pin: false, // Disable pin on all devices
-      anticipatePin: 0
-    };
-
+    // Scroll Animation - Sync with Hero logic
     const tl = gsap.timeline({
-      scrollTrigger: scrollTriggerConfig
+      scrollTrigger: {
+        trigger: containerRef.current,
+        start: "top top",
+        end: "+=4000",
+        scrub: 1.2, // Smoother scrub
+        pin: true,
+        anticipatePin: 1
+      }
     });
 
     tl.to(seqRef.current, {
@@ -120,18 +116,19 @@ const Contact = () => {
     window.open(
       `https://wa.me/919345476559?text=Hello%20Shajan%20 R%2C%0A%0AI%20would%20like%20to%20get%20in%20touch%20regarding%20your%20services.%20Please%20find%20my%20details%20below%3A%0A%0AName%3A%20${encodeURIComponent(name)}%0AEmail%3A%20${encodeURIComponent(email)}%0AMessage%3A%20${encodeURIComponent(message)}%0A%0ALooking%20forward%20to%20your%20response.%0AThank%20you.`,
       "_blank"
-    );
+      );
 
-    setName("");
-    setEmail("");
-    setMessage("");
+      setName("");
+      setEmail("");
+      setMessage("");
+
   };
 
   return (
     <div
       ref={containerRef}
       id="contact"
-      className={`relative w-full ${isInputFocused ? 'pb-96' : 'h-screen'} bg-[#020202] overflow-visible flex items-center justify-center font-mono select-none`}
+      className="relative w-full h-screen bg-[#020202] overflow-hidden flex items-center justify-center font-mono select-none"
     >
       {/* 1. Loading Module (Ultra-high Z) */}
       <AnimatePresence>
@@ -159,7 +156,7 @@ const Contact = () => {
         className="absolute inset-0 w-full h-full object-cover z-0"
       />
 
-      {/* 3. Aesthetic Overlays (Z-10) */}
+            {/* 3. Aesthetic Overlays (Z-10) */}
       <div className="absolute inset-0 z-10 pointer-events-none bg-radial-vignette opacity-40" />
       <div className="absolute inset-0 z-10 pointer-events-none bg-[radial-gradient(circle_at_50%_50%,transparent_0%,rgba(0,0,0,0.3)_100%)]" />
 
@@ -188,8 +185,8 @@ const Contact = () => {
           >
             <div className="text-center mb-8">
               <h2 className="text-5xl md:text-7xl font-black text-white uppercase tracking-tighter leading-none">
-                CONTACT
-              </h2>
+              CONTACT
+            </h2>
               <div className="flex items-center justify-center space-x-2 text-cyan-500/60 font-mono text-[9px] tracking-[0.6em] uppercase">
                 <FiShield />
                 <span>Whatsapp</span>
@@ -209,8 +206,6 @@ const Contact = () => {
                     type="text"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    onFocus={() => setIsInputFocused(true)}
-                    onBlur={() => setIsInputFocused(false)}
                     placeholder="ENTER NAME"
                     required
                     className="w-full bg-white/5 border-b border-white/10 py-3 md:py-4 px-5 text-white text-[11px] outline-none focus:border-cyan-600 transition-all placeholder:text-cyan-950/20 touch-manipulation"
@@ -223,8 +218,6 @@ const Contact = () => {
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    onFocus={() => setIsInputFocused(true)}
-                    onBlur={() => setIsInputFocused(false)}
                     placeholder="ENTER EMAIL"
                     required
                     className="w-full bg-white/5 border-b border-white/10 py-3 md:py-4 px-5 text-white text-[11px] outline-none focus:border-cyan-600 transition-all placeholder:text-cyan-950/20 touch-manipulation"
@@ -238,8 +231,6 @@ const Contact = () => {
                   name="message"
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
-                  onFocus={() => setIsInputFocused(true)}
-                  onBlur={() => setIsInputFocused(false)}
                   placeholder="ENTER MESSAGE"
                   required
                   className="w-full bg-white/5 border-b border-white/10 py-3 md:py-4 px-5 text-white text-[11px] outline-none focus:border-cyan-600 transition-all min-h-[100px] md:min-h-[140px] resize-none placeholder:text-cyan-950/20 touch-manipulation"
@@ -248,14 +239,14 @@ const Contact = () => {
 
               <div className="flex justify-center md:justify-end">
                 <motion.button
-                  whileHover={{ scale: 1.05, boxShadow: "0 0 50px rgba(6, 182, 212, 0.3)" }}
-                  whileTap={{ scale: 0.95 }}
-                  type="submit"
-                  className="group flex items-center space-x-6 bg-cyan-600 text-black font-black text-[11px] uppercase tracking-[0.6em] px-8 md:px-24 py-4 md:py-6 shadow-2xl transition-all"
-                >
-                  <span>CONTACT</span>
-                  <FiSend className="text-lg transition-transform group-hover:translate-x-1" />
-                </motion.button>
+                whileHover={{ scale: 1.05, boxShadow: "0 0 50px rgba(6, 182, 212, 0.3)" }}
+                whileTap={{ scale: 0.95 }}
+                type="submit"
+                className="group flex items-center space-x-6 bg-cyan-600 text-black font-black text-[11px] uppercase tracking-[0.6em] px-8 md:px-24 py-4 md:py-6 shadow-2xl transition-all"
+              >
+                <span>CONTACT</span>
+                <FiSend className="text-lg transition-transform group-hover:translate-x-1" />
+              </motion.button>
               </div>
             </form>
           </motion.div>
