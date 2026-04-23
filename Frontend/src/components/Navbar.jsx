@@ -9,6 +9,13 @@ const navLinks = [
   { name: 'Contact', href: '#contact' }
 ];
 
+const hireMe = () => {
+  const phone = "919345476559";
+  const message = "Hello Strikex Techin, I want to hire you for a project. Please share details.";
+  const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+  window.open(url, "_blank");
+};
+
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -23,14 +30,6 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  function hireMe() {
-  const phone = "919345476559"; // your WhatsApp number with country code
-  const message = "Hello Strikex Techin, I want to hire you for a project. Please share details.";
-  const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
-  
-  window.open(url, "_blank");
-}
-
   return (
     <>
       <nav
@@ -44,9 +43,9 @@ export default function Navbar() {
           
           {/* Logo & System Status */}
           <div
-  className="flex items-center space-x-4 group cursor-pointer"
-  onClick={() => window.open("https://www.strikextechin.site", "_blank")}
->
+            className="flex items-center space-x-4 group cursor-pointer"
+            onClick={() => window.open("https://www.strikextechin.site", "_blank")}
+          >
             <div className="flex flex-col">
                 <span className="text-white text-xl font-black tracking-[0.2em] uppercase leading-none">
                     SHAJAN R<span className="text-blue-500 animate-pulse ml-0.5">.</span>

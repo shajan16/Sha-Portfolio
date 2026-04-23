@@ -48,7 +48,7 @@ const Contact = () => {
   }, []);
 
   // 2. GSAP Scroll and Render Logic (Hero Sync)
-  useEffect(() => {
+   useEffect(() => {
     if (!loaded) return;
 
     const canvas = canvasRef.current;
@@ -86,18 +86,20 @@ const Contact = () => {
     window.addEventListener("resize", resizeCanvas);
     resizeCanvas();
 
-    // Scroll Animation - Disable pin on mobile
+    // Scroll Animation - Detect mobile
     const isMobile = window.innerWidth < 768;
     
+    const scrollTriggerConfig = {
+      trigger: containerRef.current,
+      start: "top top",
+      end: isMobile ? "+=2000" : "+=4000",
+      scrub: 1.2,
+      pin: false, // Disable pin on all devices
+      anticipatePin: 0
+    };
+
     const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: containerRef.current,
-        start: "top top",
-        end: "+=4000",
-        scrub: 1.2,
-        pin: !isMobile, // Only pin on desktop
-        anticipatePin: 1
-      }
+      scrollTrigger: scrollTriggerConfig
     });
 
     tl.to(seqRef.current, {
@@ -129,7 +131,7 @@ const Contact = () => {
     <div
       ref={containerRef}
       id="contact"
-      className={`relative w-full ${isInputFocused ? 'min-h-screen' : 'h-screen'} bg-[#020202] overflow-hidden flex items-center justify-center font-mono select-none`}
+      className={`relative w-full ${isInputFocused ? 'pb-96' : 'h-screen'} bg-[#020202] overflow-visible flex items-center justify-center font-mono select-none`}
     >
       {/* 1. Loading Module (Ultra-high Z) */}
       <AnimatePresence>
