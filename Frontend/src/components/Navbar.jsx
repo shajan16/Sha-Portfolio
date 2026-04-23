@@ -130,7 +130,7 @@ export default function Navbar() {
             </li>
           ))}
           <li className={`pt-6 transition-all duration-500 ${isMobileMenuOpen ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`} style={{ transitionDelay: `${navLinks.length * 100}ms` }}>
-            <button className="px-12 py-3 border border-white/20 text-white font-mono text-[10px] uppercase tracking-[0.4em] hover:bg-white hover:text-black transition-all rounded-sm">
+            <button onClick={hireMe} className="px-12 py-3 border border-white/20 text-white font-mono text-[10px] uppercase tracking-[0.4em] hover:bg-white hover:text-black transition-all rounded-sm">
                 Hire Me
             </button>
           </li>
