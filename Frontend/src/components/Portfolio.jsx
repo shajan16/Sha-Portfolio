@@ -3,7 +3,7 @@ import { FiGithub, FiExternalLink } from "react-icons/fi";
 import { motion } from "framer-motion";
 import twitt from "../assets/sha/file_00000000e09471fab15bfa073f0c5bd5.png";
 import TD from "../assets/sha/18e6c55b-9c59-4e1c-ada6-59ff2acad1bb.png";
-import ecom from "../assets/sha/Screenshot 2026-04-07 at 12.54.35 PM.png";
+import ecom from "../assets/sha/Screenshot 2026-04-23 at 9.33.55 PM.png";
 
 const projectData = [
   {

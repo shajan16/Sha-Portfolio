@@ -59,7 +59,7 @@ export default function About() {
             <div className="hidden lg:block w-[35%] h-full"></div>
 
             {/* Main Content Pane */}
-            <div className="w-full lg:w-[65%] flex flex-col space-y-10 pointer-events-auto bg-black/40 backdrop-blur-sm px-8 md:px-12 border border-white/5 rounded-2xl">
+            <div className="w-full py-10 md:py-0 lg:w-[65%] flex flex-col space-y-10 pointer-events-auto bg-black/40 backdrop-blur-sm px-8 md:px-12 border border-white/10 md:border-none rounded-2xl">
                 {/* Header */}
                 <div className="space-y-2">
                     <h2 className="text-4xl md:text-5xl lg:text-7xl font-black text-white tracking-tighter uppercase">
