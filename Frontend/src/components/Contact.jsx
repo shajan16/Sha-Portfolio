@@ -156,7 +156,7 @@ const Contact = () => {
         className="absolute inset-0 w-full h-full object-cover z-0"
       />
 
-      {/* 3. Aesthetic Overlays (Z-10) */}
+            {/* 3. Aesthetic Overlays (Z-10) */}
       <div className="absolute inset-0 z-10 pointer-events-none bg-radial-vignette opacity-40" />
       <div className="absolute inset-0 z-10 pointer-events-none bg-[radial-gradient(circle_at_50%_50%,transparent_0%,rgba(0,0,0,0.3)_100%)]" />
 
@@ -168,24 +168,7 @@ const Contact = () => {
             animate={{ opacity: 1 }}
             className="absolute inset-0 z-20 pointer-events-none p-10"
           >
-            
-
-            {/* Brackets */}
-            <div className="absolute top-10 left-10 w-24 h-24 border-t border-l border-cyan-500/20" />
-            <div className="absolute top-10 right-10 w-24 h-24 border-t border-r border-cyan-500/20" />
-            <div className="absolute bottom-10 left-10 w-24 h-24 border-b border-l border-cyan-500/20" />
-            <div className="absolute bottom-10 right-10 w-24 h-24 border-b border-r border-cyan-500/20" />
-
-            {/* Static HUD Text */}
-            <div className="absolute top-12 left-12 flex items-center space-x-3">
-               <FiActivity className="text-cyan-400 text-xs animate-pulse" />
-               <span className="text-cyan-400/40 text-[9px] tracking-[0.4em] uppercase font-bold">Signal_Stable</span>
-            </div>
-            
-            <div className="absolute bottom-12 right-12 text-right hidden lg:block">
-               <span className="text-white/10 text-[9px] tracking-[0.6em] uppercase block mb-1">Archive_003</span>
-               <span className="text-cyan-500/30 text-[9px] tracking-[0.4em] uppercase">&gt; Strikex Techin</span>
-            </div>
+            {/* ...existing code... */}
           </motion.div>
         )}
       </AnimatePresence>
@@ -213,9 +196,9 @@ const Contact = () => {
             <form
               ref={formRef}
               onSubmit={sendEmail}
-              className="bg-white/[0.03] backdrop-blur-md border border-white/10 p-10 md:p-14 rounded-none shadow-[0_20px_50px_rgba(0,0,0,0.5)] space-y-10 group"
+              className="bg-white/[0.03] backdrop-blur-md border border-white/10 p-6 md:p-14 rounded-none shadow-[0_20px_50px_rgba(0,0,0,0.5)] space-y-6 md:space-y-10 group"
             >
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10">
                 <div className="space-y-3">
                   <label className="text-[9px] font-mono font-bold uppercase tracking-[0.3em] text-cyan-500/50 block ml-1"><FiUser /> NAME</label>
                   <input
@@ -225,7 +208,7 @@ const Contact = () => {
                     onChange={(e) => setName(e.target.value)}
                     placeholder="ENTER NAME"
                     required
-                    className="w-full bg-white/5 border-b border-white/10 py-4 px-5 text-white text-[11px] outline-none focus:border-cyan-600 transition-all placeholder:text-cyan-950/20"
+                    className="w-full bg-white/5 border-b border-white/10 py-3 md:py-4 px-5 text-white text-[11px] outline-none focus:border-cyan-600 transition-all placeholder:text-cyan-950/20 touch-manipulation"
                   />
                 </div>
                 <div className="space-y-3">
@@ -237,7 +220,7 @@ const Contact = () => {
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="ENTER EMAIL"
                     required
-                    className="w-full bg-white/5 border-b border-white/10 py-4 px-5 text-white text-[11px] outline-none focus:border-cyan-600 transition-all placeholder:text-cyan-950/20"
+                    className="w-full bg-white/5 border-b border-white/10 py-3 md:py-4 px-5 text-white text-[11px] outline-none focus:border-cyan-600 transition-all placeholder:text-cyan-950/20 touch-manipulation"
                   />
                 </div>
               </div>
@@ -250,7 +233,7 @@ const Contact = () => {
                   onChange={(e) => setMessage(e.target.value)}
                   placeholder="ENTER MESSAGE"
                   required
-                  className="w-full bg-white/5 border-b border-white/10 py-4 px-5 text-white text-[11px] outline-none focus:border-cyan-600 transition-all min-h-[140px] resize-none placeholder:text-cyan-950/20"
+                  className="w-full bg-white/5 border-b border-white/10 py-3 md:py-4 px-5 text-white text-[11px] outline-none focus:border-cyan-600 transition-all min-h-[100px] md:min-h-[140px] resize-none placeholder:text-cyan-950/20 touch-manipulation"
                 />
               </div>
 
@@ -259,7 +242,7 @@ const Contact = () => {
                 whileHover={{ scale: 1.05, boxShadow: "0 0 50px rgba(6, 182, 212, 0.3)" }}
                 whileTap={{ scale: 0.95 }}
                 type="submit"
-                className="group flex items-center space-x-6 bg-cyan-600 text-black font-black text-[11px] uppercase tracking-[0.6em] px-24 py-6 shadow-2xl transition-all"
+                className="group flex items-center space-x-6 bg-cyan-600 text-black font-black text-[11px] uppercase tracking-[0.6em] px-8 md:px-24 py-4 md:py-6 shadow-2xl transition-all"
               >
                 <span>CONTACT</span>
                 <FiSend className="text-lg transition-transform group-hover:translate-x-1" />
